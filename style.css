@@ -3,3 +3,16 @@
     margin: 0;
     padding: 0;
 }
+.memory-board {
+    display: grid;
+    grid-template: repeat(4, 1fr) / repeat(4, 1fr);
+    width: 40em;
+    height: 40em;
+    background-color: rgb(219, 183, 84);
+}
+div {
+    border: 1px solid black;
+}
+.back {
+    display: none;
+}
