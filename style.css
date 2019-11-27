@@ -6,6 +6,8 @@
 body {
     background-color: rgb(226, 224, 221);
 }
+
+/* Start button */
 .start-button {
     position: absolute;
     margin: auto;
@@ -29,7 +31,12 @@ body {
 	background-color:#8bb874;
 }
 
+/* Score board */
+.score-board {
+    display: none;
+}
 
+/* Memory board */
 .memory-board {
     position: absolute;
     margin: auto;
@@ -45,6 +52,8 @@ body {
     height: 40em;
     perspective: 1000px;
 }
+
+/* Memory card */
 .memory-card {
     background-color: thistle;
     width: calc(25% - 10px);
@@ -70,7 +79,6 @@ body {
 .back {
     transform: rotateY(180deg);
 }
-
 .front, .back {
     width: 100%;
     height: 100%;
@@ -78,6 +86,7 @@ body {
     backface-visibility: hidden;
 }
 
+/* Toggle these classes */
 .hide {
     display: none;
 }

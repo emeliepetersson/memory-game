@@ -103,10 +103,12 @@ memoryCards.forEach(card => card.addEventListener('click', flipCard));
 
 // Play-button som vid klick visar alla korten och shufflar dem
 const startButton = document.querySelector('.start-button');
+const scoreBoard = document.querySelector('.score-board');
 
 function startGame (event) {
     event.currentTarget.classList.add('hide');
     memoryBoard.classList.add('show');
+    scoreBoard.classList.add('show');
     shuffleCards();
 }
 
