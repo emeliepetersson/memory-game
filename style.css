@@ -5,16 +5,16 @@
 }
 body {
     background-color: rgb(226, 224, 221);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family:Trebuchet MS;
 }
 
 /* Start button */
 .start-button {
     position: absolute;
-    margin: auto;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    top: 40%;
     width: 12em;
     height: 5em;
 	box-shadow:inset 0px 200px 0px -150px #95bd82;
@@ -22,7 +22,6 @@ body {
 	border-radius:60px;
 	cursor:pointer;
 	color:#ffffff;
-	font-family:Trebuchet MS;
 	font-size:28px;
 	padding:10px 50px;
 	text-shadow:0px 1px 0px #81ab65;
@@ -34,16 +33,21 @@ body {
 /* Score board */
 .score-board {
     display: none;
+    margin-top: 1em;
+}
+.score-board h2 {
+    font-size: 2em;
+
+}
+.score-board p {
+    padding-left: 0.5em;
+    font-size: 2em
 }
 
 /* Memory board */
 .memory-board {
     position: absolute;
-    margin: auto;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    top: 10%;
     display: none;
     flex-wrap: wrap;
     justify-content: space-evenly;

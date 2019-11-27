@@ -82,6 +82,7 @@ function checkForMatch() {
         firstCard.removeEventListener('click', flipCard);
         secondCard.removeEventListener('click', flipCard);
 
+        incrementScore();
         resetBoard();
     } else {
         lockBoard = true;
@@ -120,6 +121,13 @@ function shuffleCards() {
 }
 
 startButton.addEventListener('click', startGame);
+
+//Increment score when match is found
+let scoreCounter = 0;
+const score = document.querySelector('.score');
+function incrementScore() {
+    score.textContent = ++scoreCounter;
+}
 
 // Restart-button som visas när alla kort har hittats, 
 //som vänder på korten och shufflar ordningen
