@@ -44,11 +44,30 @@ cards.forEach(card => {
 });
 
 
+// Play-button som vid klick visar alla korten och shufflar dem
+const startButton = document.querySelector('.start-button');
+const scoreBoard = document.querySelector('.score-board');
+
+function startGame (event) {
+    event.currentTarget.classList.add('hide');
+    memoryBoard.classList.add('show-memory-board');
+    scoreBoard.classList.add('show-score-board');
+    shuffleCards();
+}
+
+function shuffleCards() {
+    memoryCards.forEach(card => {
+        let randomPos = Math.floor(Math.random() * 12);
+        card.style.order = randomPos;
+    });
+}
+
+startButton.addEventListener('click', startGame);
+
 
 // När ett kort klickas vänds det. Vid tredje klicket: 
 // Om två element med samma dataset värde klickas i stannar dem 
 //uppvända, annars vänds dem igen.
-
 const memoryCards = document.querySelectorAll('.memory-card');
 let cardIsFlipped = false;
 let lockBoard = false;
@@ -102,32 +121,32 @@ function resetBoard() {
 
 memoryCards.forEach(card => card.addEventListener('click', flipCard));
 
-// Play-button som vid klick visar alla korten och shufflar dem
-const startButton = document.querySelector('.start-button');
-const scoreBoard = document.querySelector('.score-board');
-
-function startGame (event) {
-    event.currentTarget.classList.add('hide');
-    memoryBoard.classList.add('show');
-    scoreBoard.classList.add('show');
-    shuffleCards();
-}
-
-function shuffleCards() {
-    memoryCards.forEach(card => {
-        let randomPos = Math.floor(Math.random() * 12);
-        card.style.order = randomPos;
-    });
-}
-
-startButton.addEventListener('click', startGame);
 
 //Increment score when match is found
+// Restart-button som visas när alla kort har hittats, 
+//som vänder på korten och shufflar ordningen
+const replayButton = document.querySelector('.replay-button');
 let scoreCounter = 0;
+
 const score = document.querySelector('.score');
 function incrementScore() {
     score.textContent = ++scoreCounter;
+    if(score.textContent === '8') {
+        setTimeout(() => {
+            scoreBoard.classList.remove('show-score-board');
+        memoryBoard.classList.remove('show-memory-board');
+        replayButton.classList.add('show-replay-button');
+        firstCard.classList.remove('flip');
+        secondCard.classList.remove('flip');
+        }, 1500);
+    }
 }
 
-// Restart-button som visas när alla kort har hittats, 
-//som vänder på korten och shufflar ordningen
+function restartGame () {
+    event.currentTarget.classList.add('hide');
+    memoryBoard.classList.add('show-memory-board');
+    scoreBoard.classList.add('show-score-board');
+    resetBoard();
+    shuffleCards();
+}
+replayButton.addEventListener('click', restartGame);

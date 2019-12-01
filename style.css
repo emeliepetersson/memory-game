@@ -10,26 +10,40 @@ body {
     align-items: center;
     font-family:Trebuchet MS;
 }
-
-/* Start button */
-.start-button {
+button {
     position: absolute;
     top: 40%;
     width: 12em;
     height: 5em;
-	box-shadow:inset 0px 200px 0px -150px #95bd82;
-	background-color:#80b864;
 	border-radius:60px;
 	cursor:pointer;
 	color:#ffffff;
 	font-size:28px;
 	padding:10px 50px;
+}
+/* Start button */
+.start-button {
+	box-shadow:inset 0px 200px 0px -150px #95bd82;
+    background-color:#80b864;
 	text-shadow:0px 1px 0px #81ab65;
 }
 .start-button:hover {
 	background-color:#8bb874;
 }
 
+/* Replay button */
+.replay-button {
+    box-shadow:inset 0px 200px 0px -150px #886eb8;
+    background-color:#7d64b8;
+    text-shadow:0px 1px 0px #9565ab;
+    display: none;
+}
+.replay-button:hover {
+	background-color:#705ca0;
+}
+.show-replay-button {
+    display: initial;
+}
 /* Score board */
 .score-board {
     display: none;
@@ -42,6 +56,9 @@ body {
 .score-board p {
     padding-left: 0.5em;
     font-size: 2em
+}
+.show-score-board {
+    display: flex;
 }
 
 /* Memory board */
@@ -56,7 +73,9 @@ body {
     height: 40em;
     perspective: 1000px;
 }
-
+.show-memory-board {
+    display: flex;
+}
 /* Memory card */
 .memory-card {
     background-color: thistle;
@@ -93,7 +112,4 @@ body {
 /* Toggle these classes */
 .hide {
     display: none;
-}
-.show {
-    display: flex;
 }
