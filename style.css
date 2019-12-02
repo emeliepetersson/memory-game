@@ -86,7 +86,7 @@ button {
     transition: transform .5s;
     border: 5px solid rgb(241, 239, 239);
     border-radius: 5px;
-    overflow:visible
+    overflow:visible;
 }
 .memory-card:active {
     transform: scale(0.97);
