@@ -72,6 +72,7 @@ button {
     width: 40em;
     height: 40em;
     perspective: 1000px;
+    overflow:visible;
 }
 .show-memory-board {
     display: flex;
@@ -86,7 +87,6 @@ button {
     transition: transform .5s;
     border: 5px solid rgb(241, 239, 239);
     border-radius: 5px;
-    overflow:visible;
 }
 .memory-card:active {
     transform: scale(0.97);
@@ -94,6 +94,7 @@ button {
 }
 .memory-card.flip {
     transform: rotateY(180deg);
+    -webkit-transform:rotateY(180deg);
 }
 .memory-card img {
     width: 90%;
@@ -104,17 +105,13 @@ button {
     transform: rotateY(180deg);
     -webkit-transform:rotateY(180deg);
 }
-.front {
-    transform: rotateY(0deg);
-    -webkit-transform: rotateY(0deg);
-}
 .front, .back {
     width: 100%;
     height: 100%;
     position: absolute;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
-    opacity: 2;
+    opacity: .99; /* This will make backface-visibility work in chrome */
 }
 
 /* Toggle these classes */
