@@ -153,6 +153,8 @@ function restartGame () {
         flippedCard.classList.remove('flip');
     });
 
+    memoryCards.forEach(card => card.addEventListener('click', flipCard));
+
     resetBoard();
     shuffleCards();
 }
