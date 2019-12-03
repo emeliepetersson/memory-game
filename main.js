@@ -55,6 +55,7 @@ function startGame (event) {
     shuffleCards();
 }
 
+//https://scotch.io/tutorials/how-to-build-a-memory-matching-game-in-javascript
 function shuffleCards() {
     memoryCards.forEach(card => {
         let randomPos = Math.floor(Math.random() * 12);
@@ -131,13 +132,11 @@ let scoreCounter = 0;
 const score = document.querySelector('.score');
 function incrementScore() {
     score.textContent = ++scoreCounter;
-    if(score.textContent === '8') {
+    if(score.textContent === '2') {
         setTimeout(() => {
             scoreBoard.classList.remove('show-score-board');
-        memoryBoard.classList.remove('show-memory-board');
-        replayButton.classList.add('show-replay-button');
-        firstCard.classList.remove('flip');
-        secondCard.classList.remove('flip');
+            memoryBoard.classList.remove('show-memory-board');
+            replayButton.classList.add('show-replay-button');
         }, 1500);
     }
 }
@@ -146,6 +145,14 @@ function restartGame () {
     event.currentTarget.classList.add('hide');
     memoryBoard.classList.add('show-memory-board');
     scoreBoard.classList.add('show-score-board');
+    score.textContent = 0;
+
+    const flippedCards = document.querySelectorAll('.flip');
+    
+    flippedCards.forEach(flippedCard => {
+        flippedCard.classList.remove('flip');
+    });
+
     resetBoard();
     shuffleCards();
 }
