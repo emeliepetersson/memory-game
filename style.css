@@ -111,7 +111,7 @@ button {
     position: absolute;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
-    opacity: .99; /* This will make backface-visibility work in chrome */
+    opacity: .99; /*This will make backface-visibility work in chrome*/
 }
 
 /* Toggle these classes */

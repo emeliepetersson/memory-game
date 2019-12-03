@@ -1,6 +1,6 @@
+'use strict';
 const memoryBoard = document.querySelector('.memory-board');
 
-// Array with memory-card, 10st
 const cards = [
     { name: "blown", image: "/images/blown.png", icon: "/images/magnifyer.png"},
     { name: "devil", image: "/images/devil.png", icon: "/images/magnifyer.png"},
@@ -10,18 +10,17 @@ const cards = [
     { name: "sad", image: "/images/sad.png", icon: "/images/magnifyer.png"},
     { name: "ssh", image: "/images/ssh.png", icon: "/images/magnifyer.png"},
     { name: "stars", image: "/images/stars.png", icon: "/images/magnifyer.png"}
-]
+];
 
 
-// Create each memory-card two times each
-
-const createCard = (name, frontIcon, backImage) => {
+// Create memory-cards and add it to the memory-board
+const createCard = (name, frontImage, backImage) => {
     const card = document.createElement('div');
     const front = document.createElement('img');
     const back = document.createElement('img');
     
     //front side
-    front.src = frontIcon;
+    front.src = frontImage;
     front.classList.add('front');
     
     //back side
@@ -34,21 +33,21 @@ const createCard = (name, frontIcon, backImage) => {
     card.appendChild(front);
     card.appendChild(back);
     return card;
-  };
+};
 
 cards.forEach(card => {
-    const element = createCard(card.name, card.icon, card.image);
-    const clone = element.cloneNode(true);
-    memoryBoard.appendChild((element));
-    memoryBoard.appendChild((clone));
+    const cardElement = createCard(card.name, card.icon, card.image);
+    const cloneCard = cardElement.cloneNode(true); //clone the card to get pairs
+    memoryBoard.appendChild((cardElement));
+    memoryBoard.appendChild((cloneCard));
 });
 
 
-// Play-button som vid klick visar alla korten och shufflar dem
+// Add eventlistener to start-game button to shuffle and show the cards
 const startButton = document.querySelector('.start-button');
 const scoreBoard = document.querySelector('.score-board');
 
-function startGame (event) {
+function startGame(event) {
     event.currentTarget.classList.add('hide');
     memoryBoard.classList.add('show-memory-board');
     scoreBoard.classList.add('show-score-board');
@@ -66,9 +65,9 @@ function shuffleCards() {
 startButton.addEventListener('click', startGame);
 
 
-// När ett kort klickas vänds det. Vid tredje klicket: 
-// Om två element med samma dataset värde klickas i stannar dem 
-//uppvända, annars vänds dem igen.
+// When a card is clicked it's flipped over. 
+// On the third click: If two cards with same dataset name is clicked they stay flipped,
+// otherwise they flip back again.
 const memoryCards = document.querySelectorAll('.memory-card');
 let cardIsFlipped = false;
 let lockBoard = false;
@@ -123,16 +122,16 @@ function resetBoard() {
 memoryCards.forEach(card => card.addEventListener('click', flipCard));
 
 
-//Increment score when match is found
-// Restart-button som visas när alla kort har hittats, 
-//som vänder på korten och shufflar ordningen
+//Increment score when a match is found.
+// Replay-button is displayed when all matches have been found,
+//when the button is clicked all the cards are flipped and shuffled.
 const replayButton = document.querySelector('.replay-button');
+const score = document.querySelector('.score');
 let scoreCounter = 0;
 
-const score = document.querySelector('.score');
 function incrementScore() {
     score.textContent = ++scoreCounter;
-    if(score.textContent === '2') {
+    if(score.textContent === '8') {
         setTimeout(() => {
             scoreBoard.classList.remove('show-score-board');
             memoryBoard.classList.remove('show-memory-board');
