@@ -50,16 +50,17 @@ button {
     margin-top: 1em;
 }
 .score-board h2 {
+    margin-left: 0.5em;
     font-size: 2em;
-
 }
-.score-board p {
-    padding-left: 0.5em;
+.score-board p, .timer {
+    margin: 0 0.5em;
     font-size: 2em
 }
 .show-score-board {
     display: flex;
 }
+
 
 /* Memory board */
 .memory-board {
