@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<button class="start">Start</button>
+
+<p id="demo">0</p>
+
+<button class="stop">Stop</button>
+<body>
+    
+    <script>
+        'use strict';
+
+        const start = document.querySelector('.start');
+        const stop = document.querySelector('.stop');
+        
+        
+        function changeValue() {
+            document.getElementById("demo").innerHTML = ++value;
+        }
+
+        var timerInterval = null;
+       
+       
+        start.addEventListener('click', event => {
+            stop(); // stoping the previous counting (if any)
+            value = 0;
+            timerInterval = setInterval(changeValue, 1000);  
+        })
+
+        start.addEventListener('click', event => {
+            clearInterval(timerInterval);
+        })
+    
+    </script>
+</body>
+</html>
