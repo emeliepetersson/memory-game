@@ -71,19 +71,18 @@
             clearInterval(timer);
 
             let newScore = document.querySelector('.timer').textContent;
-            let scores = [];
-            let localData;
             let player = document.querySelector('.player').textContent;
 
-            scores = { 
-                'score': newScore,
-                'name': player
+            let highScores = JSON.parse(localStorage.getItem('highScores')) || [];
+
+            const score = { 
+                score: newScore,
+                name: player
             };
 
-            localStorage.setItem('scores', JSON.stringify(scores));
-            localData = JSON.parse(localStorage.getItem('scores'));
-            console.log(localData);
-            console.log(localStorage.getItem('scores'));
+            highScores.push(score);
+
+            console.log(highScores);
         };
 
         stop.addEventListener('click', stopTimer);
