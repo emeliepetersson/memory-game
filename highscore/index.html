@@ -5,11 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+    .player{
+        background-color: rgb(184, 180, 180);
+        width: 10em;
+
+    }
+    button {
+        background-color: aquamarine;
+    }
+    </style>
 </head>
 
 <!-- <label id="minutes">00</label>:<label id="seconds">00</label> -->
-
-<div class="timer"></div>
+<div class="player" contenteditable="true"></div>
+</form>
+<div class="timer">0:0:0</div>
 
 <button class="stop">Stop</button>
 <body>
@@ -53,11 +64,26 @@
            let minute = Math.floor((totalSeconds - hour*3600)/60);
            let seconds = totalSeconds - (hour*3600 + minute*60);
         
-           document.getElementById("timer").innerHTML = hour + ":" + minute + ":" + seconds;
+           document.querySelector('.timer').textContent = hour + ":" + minute + ":" + seconds;
         }
 
         function stopTimer() {
             clearInterval(timer);
+
+            let newScore = document.querySelector('.timer').textContent;
+            let scores = [];
+            let localData;
+            let player = document.querySelector('.player').textContent;
+
+            scores = { 
+                'score': newScore,
+                'name': player
+            };
+
+            localStorage.setItem('scores', JSON.stringify(scores));
+            localData = JSON.parse(localStorage.getItem('scores'));
+            console.log(localData);
+            console.log(localStorage.getItem('scores'));
         };
 
         stop.addEventListener('click', stopTimer);

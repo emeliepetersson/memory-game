@@ -154,7 +154,7 @@ memoryCards.forEach(card => card.addEventListener('click', flipCard));
 
 
 //Increment score when a match is found.
-// Replay-button is displayed when all matches have been found,
+//Replay-button is displayed when all matches have been found,
 //when the button is clicked all the cards are flipped and shuffled.
 const replayButton = document.querySelector('.replay-button');
 const score = document.querySelector('.score');
@@ -172,24 +172,24 @@ function incrementScore() {
     }
 }
 
-function restartGame() {
-    event.currentTarget.classList.add('hide');
-    memoryBoard.classList.add('show-memory-board');
-    scoreBoard.classList.add('show-score-board');
-    score.textContent = 0;
+function restartGame(event) {
+    startGame(event);
+    resetBoard();
+    resetTimer();
 
+    //reset score
+    score.textContent = 0;
+    scoreCounter = 0;
+
+    //unflip cards
     const flippedCards = document.querySelectorAll('.flip');
 
     flippedCards.forEach(flippedCard => {
         flippedCard.classList.remove('flip');
     });
 
+    //re-attach eventlistener to cards
     memoryCards.forEach(card => card.addEventListener('click', flipCard));
-
-    resetBoard();
-    shuffleCards();
-    resetTimer ();
-    startTimer();
 }
 replayButton.addEventListener('click', restartGame);
 
