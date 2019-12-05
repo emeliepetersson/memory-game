@@ -2,14 +2,14 @@
 const memoryBoard = document.querySelector('.memory-board');
 
 const cards = [
-    { name: "blown", image: "/images/blown.png", icon: "/images/magnifyer.png"},
-    { name: "devil", image: "/images/devil.png", icon: "/images/magnifyer.png"},
-    { name: "kiss", image: "/images/kiss.png", icon: "/images/magnifyer.png"},
-    { name: "party", image: "/images/party.png", icon: "/images/magnifyer.png"},
-    { name: "poop", image: "/images/poop.png", icon: "/images/magnifyer.png"},
-    { name: "sad", image: "/images/sad.png", icon: "/images/magnifyer.png"},
-    { name: "ssh", image: "/images/ssh.png", icon: "/images/magnifyer.png"},
-    { name: "stars", image: "/images/stars.png", icon: "/images/magnifyer.png"}
+    { name: "blown", image: "/images/blown.png", icon: "/images/magnifyer.png" },
+    { name: "devil", image: "/images/devil.png", icon: "/images/magnifyer.png" },
+    { name: "kiss", image: "/images/kiss.png", icon: "/images/magnifyer.png" },
+    { name: "party", image: "/images/party.png", icon: "/images/magnifyer.png" },
+    { name: "poop", image: "/images/poop.png", icon: "/images/magnifyer.png" },
+    { name: "sad", image: "/images/sad.png", icon: "/images/magnifyer.png" },
+    { name: "ssh", image: "/images/ssh.png", icon: "/images/magnifyer.png" },
+    { name: "stars", image: "/images/stars.png", icon: "/images/magnifyer.png" }
 ];
 
 
@@ -18,15 +18,15 @@ const createCard = (name, frontImage, backImage) => {
     const card = document.createElement('div');
     const front = document.createElement('img');
     const back = document.createElement('img');
-    
+
     //front side
     front.src = frontImage;
     front.classList.add('front');
-    
+
     //back side
     back.src = backImage;
     back.classList.add('back');
-    
+
     //the card
     card.classList.add('memory-card');
     card.dataset.emoji = name;
@@ -52,6 +52,7 @@ function startGame(event) {
     memoryBoard.classList.add('show-memory-board');
     scoreBoard.classList.add('show-score-board');
     shuffleCards();
+    startTimer();
 }
 
 //https://scotch.io/tutorials/how-to-build-a-memory-matching-game-in-javascript
@@ -64,6 +65,36 @@ function shuffleCards() {
 
 startButton.addEventListener('click', startGame);
 
+//Timer
+let totalSeconds = 0;
+let timer;
+
+function startTimer(){
+    timer = setInterval(countTimer, 1000);
+}
+
+
+function countTimer() {
+    ++totalSeconds;
+    let hour = Math.floor(totalSeconds / 3600);
+    let minute = Math.floor((totalSeconds - hour * 3600) / 60);
+    let seconds = totalSeconds - (hour * 3600 + minute * 60);
+
+    document.querySelector('.timer').innerHTML = hour + ":" + minute + ":" + seconds;
+}
+
+function stopTimer() {
+    clearInterval(timer);
+};
+
+function resetTimer () {
+    totalSeconds = 0;
+    let hour = 0;
+    let minute = 0;
+    let seconds = 0;
+
+    document.querySelector('.timer').innerHTML = hour + ":" + minute + ":" + seconds;
+}
 
 // When a card is clicked it's flipped over. 
 // On the third click: If two cards with same dataset name is clicked they stay flipped,
@@ -75,13 +106,13 @@ let firstCard;
 let secondCard;
 
 
-function flipCard (event) {
-    if(lockBoard) return;
-    if(event.currentTarget === firstCard) return;
+function flipCard(event) {
+    if (lockBoard) return;
+    if (event.currentTarget === firstCard) return;
 
     event.currentTarget.classList.toggle('flip');
-    
-    if(!cardIsFlipped) {
+
+    if (!cardIsFlipped) {
         //First click
         cardIsFlipped = true;
         firstCard = event.currentTarget;
@@ -89,15 +120,15 @@ function flipCard (event) {
         //Second click
         cardIsFlipped = false;
         secondCard = event.currentTarget;
-        
+
         checkForMatch();
     }
 
 }
 
 function checkForMatch() {
-    
-    if(firstCard.dataset.emoji === secondCard.dataset.emoji) {
+
+    if (firstCard.dataset.emoji === secondCard.dataset.emoji) {
         firstCard.removeEventListener('click', flipCard);
         secondCard.removeEventListener('click', flipCard);
 
@@ -131,23 +162,24 @@ let scoreCounter = 0;
 
 function incrementScore() {
     score.textContent = ++scoreCounter;
-    if(score.textContent === '8') {
+    if (score.textContent === '2') {
         setTimeout(() => {
             scoreBoard.classList.remove('show-score-board');
             memoryBoard.classList.remove('show-memory-board');
             replayButton.classList.add('show-replay-button');
         }, 1500);
+        stopTimer();
     }
 }
 
-function restartGame () {
+function restartGame() {
     event.currentTarget.classList.add('hide');
     memoryBoard.classList.add('show-memory-board');
     scoreBoard.classList.add('show-score-board');
     score.textContent = 0;
 
     const flippedCards = document.querySelectorAll('.flip');
-    
+
     flippedCards.forEach(flippedCard => {
         flippedCard.classList.remove('flip');
     });
@@ -156,5 +188,10 @@ function restartGame () {
 
     resetBoard();
     shuffleCards();
+    resetTimer ();
+    startTimer();
 }
 replayButton.addEventListener('click', restartGame);
+
+
+

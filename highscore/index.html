@@ -6,9 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
-<button class="start">Start</button>
 
-<p id="demo">0</p>
+<!-- <label id="minutes">00</label>:<label id="seconds">00</label> -->
+
+<div class="timer"></div>
 
 <button class="stop">Stop</button>
 <body>
@@ -20,27 +21,49 @@
 
         'use strict';
 
-        const start = document.querySelector('.start');
         const stop = document.querySelector('.stop');
+      
+        // const minutesLabel = document.getElementById("minutes");
+        // const secondsLabel = document.getElementById("seconds");
+        // let totalSeconds = 0;
+        // const timer = setInterval(setTime, 1000);
+
         
+        // function setTime() {
+        //     ++totalSeconds;
+        //     secondsLabel.innerHTML = pad(totalSeconds % 60);
+        //     minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60));
+        // }
         
-        function changeValue() {
-            document.getElementById("demo").innerHTML = ++value;
+        // function pad(value) {
+        //     let valueString = value + "";
+        //     if (valueString.length < 2) {
+        //         return "0" + valueString;
+        //     } else {
+        //         return valueString;
+        //     }
+        // }
+        
+        const timer = setInterval(countTimer, 1000);
+        let totalSeconds = 0;
+        
+        function countTimer() {
+           ++totalSeconds;
+           let hour = Math.floor(totalSeconds /3600);
+           let minute = Math.floor((totalSeconds - hour*3600)/60);
+           let seconds = totalSeconds - (hour*3600 + minute*60);
+        
+           document.getElementById("timer").innerHTML = hour + ":" + minute + ":" + seconds;
         }
 
-        var timerInterval = null;
-       
-       
-        start.addEventListener('click', event => {
-            stop(); // stoping the previous counting (if any)
-            value = 0;
-            timerInterval = setInterval(changeValue, 1000);  
-        })
+        function stopTimer() {
+            clearInterval(timer);
+        };
 
-        start.addEventListener('click', event => {
-            clearInterval(timerInterval);
-        })
-    
+        stop.addEventListener('click', stopTimer);
+
+
+
     </script>
 </body>
 </html>
