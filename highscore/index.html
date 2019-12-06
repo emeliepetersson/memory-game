@@ -17,9 +17,15 @@
     </style>
 </head>
 
-<!-- <label id="minutes">00</label>:<label id="seconds">00</label> -->
-<div class="player" contenteditable="true"></div>
-</form>
+
+<form>
+    <input
+      type="text"
+      name="username"
+      id="username"
+      placeholder="username"/>
+  </form>
+
 <div class="timer">0:0:0</div>
 
 <button class="stop">Stop</button>
@@ -56,6 +62,8 @@
         //     }
         // }
         
+
+        //START TIMER
         const timer = setInterval(countTimer, 1000);
         let totalSeconds = 0;
         
@@ -67,23 +75,34 @@
         
            document.querySelector('.timer').textContent = hour + ":" + minute + ":" + seconds;
         }
+        //  END START TIMER
 
-        function stopTimer() {
+
+
+        //STOP TIMER AND SAVE USERNAME PLUS TIME
+        const username = document.getElementById("username");
+        let highScores = JSON.parse(localStorage.getItem('highScores')) || [];
+
+
+        function stopTimer(event) {
+            console.log("clicked the save button!");
+            event.preventDefault();
+
             clearInterval(timer);
 
-            let newScore = document.querySelector('.timer').textContent;
-            let player = document.querySelector('.player').textContent;
 
-            let highScores = JSON.parse(localStorage.getItem('highScores')) || [];
-
+            let finalScore = document.querySelector('.timer').textContent;
             const score = { 
-                score: newScore,
-                name: player
+                score: finalScore,
+                name: username.value
             };
 
             highScores.push(score);
+            highScores.sort((a, b) => b.score - a.score);
+            highScores.splice(5);
 
-            console.log(highScores);
+            localStorage.setItem("highScores", JSON.stringify(highScores));
+            // window.location.assign("/");
         };
 
         stop.addEventListener('click', stopTimer);
