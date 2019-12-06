@@ -112,12 +112,20 @@ function stopTimer() {
 
     //show highscores in list
     const list = document.querySelector('ol');
-    highscoreTable.appendChild(list);
-    localData.forEach(data => {
+    
+
+    if(list.innerHTML === '') {
+        localData.forEach(data => {
+            const item = document.createElement('li');
+            item.innerHTML =data.name + " " + data.score;
+            list.appendChild(item);
+        });
+    } else {
         const item = document.createElement('li');
-        item.innerHTML =data.name + " " + data.score;
+        let lastScore = localData[localData.length-1];
+        item.textContent = lastScore.name + " " + lastScore.score;
         list.appendChild(item);
-    });
+    }
 
 };
 
