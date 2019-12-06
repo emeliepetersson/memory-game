@@ -29,6 +29,10 @@
 <div class="timer">0:0:0</div>
 
 <button class="stop">Stop</button>
+
+
+<div class="highscoreTable"></div>
+
 <body>
     
     <script>
@@ -82,7 +86,7 @@
         //STOP TIMER AND SAVE USERNAME PLUS TIME
         const username = document.getElementById("username");
         let highScores = JSON.parse(localStorage.getItem('highScores')) || [];
-
+        const highscoreTable = document.querySelector('.highscoreTable');
 
         function stopTimer(event) {
             console.log("clicked the save button!");
@@ -99,13 +103,22 @@
 
             highScores.push(score);
             highScores.sort((a, b) => b.score - a.score);
-            highScores.splice(5);
+            // highScores.splice(5);
 
-            localStorage.setItem("highScores", JSON.stringify(highScores));
+            localStorage.setItem('highScores', JSON.stringify(highScores));
             // window.location.assign("/");
 
-            let localData = JSON.parse(localStorage.getItem('highscores'));
+            let localData = JSON.parse(localStorage.getItem('highScores'));
             console.log(localData);
+
+            const list = document.createElement('ul');
+            highscoreTable.appendChild(list);
+            localData.forEach(data => {
+                const item = document.createElement('li');
+                item.innerHTML =data.name + " " + data.score;
+                list.appendChild(item);
+            });
+
         };
 
         stop.addEventListener('click', stopTimer);
