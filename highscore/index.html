@@ -103,6 +103,9 @@
 
             localStorage.setItem("highScores", JSON.stringify(highScores));
             // window.location.assign("/");
+
+            let localData = JSON.parse(localStorage.getItem('highscores'));
+            console.log(localData);
         };
 
         stop.addEventListener('click', stopTimer);
