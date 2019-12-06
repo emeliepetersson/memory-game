@@ -21,15 +21,18 @@ button {
 	font-size:28px;
 	padding:10px 50px;
 }
+
+
 /* Start button */
 .start-button {
 	box-shadow:inset 0px 200px 0px -150px #95bd82;
-    background-color:#80b864;
+  background-color:#80b864;
 	text-shadow:0px 1px 0px #81ab65;
 }
 .start-button:hover {
 	background-color:#8bb874;
 }
+
 
 /* Username */
 form {
@@ -136,6 +139,7 @@ form label {
     display: initial;
 }
 
+
 /* Highscore table */
 .highscoreTable {
     display: none;
@@ -151,6 +155,7 @@ form label {
 .highscoreTable ol li {
     padding-bottom: 0.5em;
 }
+
 
 /* Toggle these classes */
 .hide {
