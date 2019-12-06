@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    .player{
+        background-color: rgb(184, 180, 180);
+        width: 10em;
+
+    }
+    button {
+        background-color: aquamarine;
+    }
+    </style>
+</head>
+
+
+<form>
+    <input
+      type="text"
+      name="username"
+      id="username"
+      placeholder="username"/>
+  </form>
+
+<div class="timer">0:0:0</div>
+
+<button class="stop">Stop</button>
+
+
+<div class="highscoreTable"></div>
+
+<body>
+    
+    <script>
+//https://github.com/jamesqquick/Build-A-Quiz-App-With-HTML-CSS-and-JavaScript/blob/master/8.%20Save%20High%20Scores%20in%20Local%20Storage/end.html
+//https://www.youtube.com/watch?v=DFhmNLKwwGw
+
+//https://www.youtube.com/watch?v=T9GWHFDcELQ
+
+        'use strict';
+
+        const stop = document.querySelector('.stop');
+      
+        // const minutesLabel = document.getElementById("minutes");
+        // const secondsLabel = document.getElementById("seconds");
+        // let totalSeconds = 0;
+        // const timer = setInterval(setTime, 1000);
+
+        
+        // function setTime() {
+        //     ++totalSeconds;
+        //     secondsLabel.innerHTML = pad(totalSeconds % 60);
+        //     minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60));
+        // }
+        
+        // function pad(value) {
+        //     let valueString = value + "";
+        //     if (valueString.length < 2) {
+        //         return "0" + valueString;
+        //     } else {
+        //         return valueString;
+        //     }
+        // }
+        
+
+        //START TIMER
+        const timer = setInterval(countTimer, 1000);
+        let totalSeconds = 0;
+        
+        function countTimer() {
+           ++totalSeconds;
+           let hour = Math.floor(totalSeconds /3600);
+           let minute = Math.floor((totalSeconds - hour*3600)/60);
+           let seconds = totalSeconds - (hour*3600 + minute*60);
+        
+           document.querySelector('.timer').textContent = hour + ":" + minute + ":" + seconds;
+        }
+        //  END START TIMER
+
+
+
+        //STOP TIMER AND SAVE USERNAME PLUS TIME
+        const username = document.getElementById("username");
+        let highScores = JSON.parse(localStorage.getItem('highScores')) || [];
+        const highscoreTable = document.querySelector('.highscoreTable');
+
+        function stopTimer(event) {
+            console.log("clicked the save button!");
+            event.preventDefault();
+
+            clearInterval(timer);
+
+
+            let finalScore = document.querySelector('.timer').textContent;
+            const score = { 
+                score: finalScore,
+                name: username.value
+            };
+            highScores.push(score);
+            
+            highScores.sort((a, b) => b.score - a.score);
+            // highScores.splice(5);
+
+            localStorage.setItem('highScores', JSON.stringify(highScores));
+            // window.location.assign("/");
+
+            let localData = JSON.parse(localStorage.getItem('highScores'));
+            console.log(localData);
+
+            //show highscores in list
+            const list = document.createElement('ul');
+            highscoreTable.appendChild(list);
+            localData.forEach(data => {
+                const item = document.createElement('li');
+                item.innerHTML =data.name + " " + data.score;
+                list.appendChild(item);
+            });
+
+        };
+
+        stop.addEventListener('click', stopTimer);
+
+
+
+    </script>
+</body>
+</html>
