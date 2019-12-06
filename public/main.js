@@ -2,14 +2,14 @@
 const memoryBoard = document.querySelector('.memory-board');
 
 const cards = [
-  { name: "blown", image: "/images/blown.png", icon: "/images/magnifyer.png" },
-  { name: "devil", image: "/images/devil.png", icon: "/images/magnifyer.png" },
-  { name: "kiss", image: "/images/kiss.png", icon: "/images/magnifyer.png" },
-  { name: "party", image: "/images/party.png", icon: "/images/magnifyer.png" },
-  { name: "poop", image: "/images/poop.png", icon: "/images/magnifyer.png" },
-  { name: "sad", image: "/images/sad.png", icon: "/images/magnifyer.png" },
-  { name: "ssh", image: "/images/ssh.png", icon: "/images/magnifyer.png" },
-  { name: "stars", image: "/images/stars.png", icon: "/images/magnifyer.png" }
+  { name: "blown", image: "images/blown.png", icon: "images/magnifyer.png" },
+  { name: "devil", image: "images/devil.png", icon: "images/magnifyer.png" },
+  { name: "kiss", image: "images/kiss.png", icon: "images/magnifyer.png" },
+  { name: "party", image: "images/party.png", icon: "images/magnifyer.png" },
+  { name: "poop", image: "images/poop.png", icon: "images/magnifyer.png" },
+  { name: "sad", image: "images/sad.png", icon: "images/magnifyer.png" },
+  { name: "ssh", image: "images/ssh.png", icon: "images/magnifyer.png" },
+  { name: "stars", image: "images/stars.png", icon: "images/magnifyer.png" }
 ];
 
 
