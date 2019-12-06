@@ -100,8 +100,8 @@
                 score: finalScore,
                 name: username.value
             };
-
             highScores.push(score);
+            
             highScores.sort((a, b) => b.score - a.score);
             // highScores.splice(5);
 
@@ -111,6 +111,7 @@
             let localData = JSON.parse(localStorage.getItem('highScores'));
             console.log(localData);
 
+            //show highscores in list
             const list = document.createElement('ul');
             highscoreTable.appendChild(list);
             localData.forEach(data => {

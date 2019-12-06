@@ -46,9 +46,11 @@ cards.forEach(card => {
 // Add eventlistener to start-game button to shuffle and show the cards
 const startButton = document.querySelector('.start-button');
 const scoreBoard = document.querySelector('.score-board');
+const usernameForm = document.querySelector('.usernameForm');
 
 function startGame(event) {
     event.currentTarget.classList.add('hide');
+    usernameForm.classList.add('hide');
     memoryBoard.classList.add('show-memory-board');
     scoreBoard.classList.add('show-score-board');
     shuffleCards();
@@ -83,8 +85,40 @@ function countTimer() {
     document.querySelector('.timer').innerHTML = hour + ":" + minute + ":" + seconds;
 }
 
+//Stop timer and save username and score in localdata
+//Display highscores in list
+const username = document.querySelector('.username');
+let highScores = JSON.parse(localStorage.getItem('highScores')) || [];
+const highscoreTable = document.querySelector('.highscoreTable');
+
 function stopTimer() {
+    event.preventDefault();
+    
     clearInterval(timer);
+
+    let finalScore = document.querySelector('.timer').textContent;
+
+    const score = { 
+        score: finalScore,
+        name: username.value
+    };
+
+    highScores.push(score);
+    // highScores.sort((a, b) => b.score - a.score);
+    // highScores.splice(5);
+
+    localStorage.setItem('highScores', JSON.stringify(highScores));
+    let localData = JSON.parse(localStorage.getItem('highScores'));
+
+    //show highscores in list
+    const list = document.createElement('ol');
+    highscoreTable.appendChild(list);
+    localData.forEach(data => {
+        const item = document.createElement('li');
+        item.innerHTML =data.name + " " + data.score;
+        list.appendChild(item);
+    });
+
 };
 
 function resetTimer () {
@@ -167,6 +201,7 @@ function incrementScore() {
             scoreBoard.classList.remove('show-score-board');
             memoryBoard.classList.remove('show-memory-board');
             replayButton.classList.add('show-replay-button');
+            highscoreTable.classList.add('show');
         }, 1500);
         stopTimer();
     }
@@ -176,7 +211,7 @@ function restartGame(event) {
     startGame(event);
     resetBoard();
     resetTimer();
-
+    highscoreTable.classList.remove('show');
     //reset score
     score.textContent = 0;
     scoreCounter = 0;

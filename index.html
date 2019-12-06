@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,20 +9,34 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-   <div class="score-board"> <!-- Score board -->
-       <h2>Pairs:</h2>
-       <p><span class="score">0</span>/8</p>
-       <h2>Time:</h2>
-       <div class="timer">0:0:0</div>
-   </div>
+    <div class="score-board">
+        <!-- Score board -->
+        <h2>Pairs:</h2>
+        <p><span class="score">0</span>/8</p>
+        <h2>Time:</h2>
+        <div class="timer">0:0:0</div>
+    </div>
+
+    <form class="usernameForm">
+        <label for="username">Player name:</label>
+        <input type="text" name="username" class="username" placeholder="Name" />
+    </form>
     <button class="start-button">Start Game!</button> <!-- Start button -->
-    
-    <section class="memory-board"> <!-- Memory board -->
+
+    <section class="memory-board">
+        <!-- Memory board -->
     </section>
-    
+
     <button class="replay-button">Replay game!</button> <!-- Restart game button -->
+
+
+    <div class="highscoreTable">
+        <h2>High Scores!</h2>
+    </div>
 
     <script src="main.js"></script>
 </body>
+
 </html>

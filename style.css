@@ -31,19 +31,24 @@ button {
 	background-color:#8bb874;
 }
 
-/* Replay button */
-.replay-button {
-    box-shadow:inset 0px 200px 0px -150px #886eb8;
-    background-color:#7d64b8;
-    text-shadow:0px 1px 0px #9565ab;
-    display: none;
+/* Username */
+form {
+    position: absolute;
+    top: 25%;
 }
-.replay-button:hover {
-	background-color:#705ca0;
+form label {
+    display: block;
+    padding-left: 1em;
 }
-.show-replay-button {
-    display: initial;
+.username {
+    font-style: italic;
+    width: 16em;
+    height: 3em;
+    padding: 1em;
+    border-radius: 2em;
 }
+
+
 /* Score board */
 .score-board {
     display: none;
@@ -115,7 +120,42 @@ button {
     opacity: .99; /*This will make backface-visibility work in chrome*/
 }
 
+
+/* Replay button */
+.replay-button {
+    top: 20%;
+    box-shadow:inset 0px 200px 0px -150px #886eb8;
+    background-color:#7d64b8;
+    text-shadow:0px 1px 0px #9565ab;
+    display: none;
+}
+.replay-button:hover {
+	background-color:#705ca0;
+}
+.show-replay-button {
+    display: initial;
+}
+
+/* Highscore table */
+.highscoreTable {
+    display: none;
+    position: absolute;
+    top: 45%;
+}
+.highscoreTable h2 {
+    margin-bottom: 1em;
+}
+.highscoreTable ol {
+    margin-left: 1.5em;
+}
+.highscoreTable ol li {
+    padding-bottom: 0.5em;
+}
+
 /* Toggle these classes */
 .hide {
     display: none;
+}
+.show {
+    display: block;
 }
