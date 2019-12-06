@@ -43,7 +43,7 @@ cards.forEach(card => {
 });
 
 
-// Add eventlistener to start-game button to shuffle and show the cards
+// Add eventlistener to "start game" button. On click: shuffle and show the cards.
 const startButton = document.querySelector('.start-button');
 const scoreBoard = document.querySelector('.score-board');
 const usernameForm = document.querySelector('.usernameForm');
@@ -57,7 +57,6 @@ function startGame(event) {
     startTimer();
 }
 
-//https://scotch.io/tutorials/how-to-build-a-memory-matching-game-in-javascript
 function shuffleCards() {
     memoryCards.forEach(card => {
         let randomPos = Math.floor(Math.random() * 12);
@@ -67,17 +66,17 @@ function shuffleCards() {
 
 startButton.addEventListener('click', startGame);
 
-//Timer
+
+//Functions to start and stop timer
 let totalSeconds = 0;
 let timer;
 
-function startTimer(){
-    timer = setInterval(countTimer, 1000);
+function startTimer() {
+    timer = setInterval(countTimer, 1000); //Set interval to 1 second
 }
 
-
 function countTimer() {
-    ++totalSeconds;
+    ++totalSeconds; //For each second this variable increase with 1
     let hour = Math.floor(totalSeconds / 3600);
     let minute = Math.floor((totalSeconds - hour * 3600) / 60);
     let seconds = totalSeconds - (hour * 3600 + minute * 60);
@@ -85,16 +84,16 @@ function countTimer() {
     document.querySelector('.timer').innerHTML = hour + ":" + minute + ":" + seconds;
 }
 
-//Stop timer and save username and score in localdata
+//Stop timer and save username and score(time) in localdata when user has found all matches
 //Display highscores in list
 const username = document.querySelector('.username');
-let highScores = JSON.parse(localStorage.getItem('highScores')) || [];
 const highscoreTable = document.querySelector('.highscoreTable');
+let highScores = JSON.parse(localStorage.getItem('highScores')) || []; //if localstorage.getItem('highScores') is not set yet, create an empty array.
 
 function stopTimer() {
     event.preventDefault();
     
-    clearInterval(timer);
+    clearInterval(timer); //This stop the timer
 
     let finalScore = document.querySelector('.timer').textContent;
 
@@ -103,21 +102,27 @@ function stopTimer() {
         name: username.value
     };
 
-    highScores.push(score);
-    // highScores.sort((a, b) => b.score - a.score);
-    // highScores.splice(5);
+    highScores.push(score); 
 
-    localStorage.setItem('highScores', JSON.stringify(highScores));
+    localStorage.setItem('highScores', JSON.stringify(highScores)); //If it is not set yet
+
     let localData = JSON.parse(localStorage.getItem('highScores'));
 
     //show highscores in list
-    const list = document.createElement('ol');
-    highscoreTable.appendChild(list);
-    localData.forEach(data => {
+    const list = document.querySelector('ol');
+    
+    if(list.innerHTML === '') { //This runs the first time (or when the page has reloaded), when the ol is empty
+        localData.forEach(data => {
+            const item = document.createElement('li');
+            item.innerHTML =data.name + " " + data.score;
+            list.appendChild(item);
+        });
+    } else { //This runs when the player has restarted the game
         const item = document.createElement('li');
-        item.innerHTML =data.name + " " + data.score;
+        let lastScore = localData[localData.length-1];
+        item.textContent = lastScore.name + " " + lastScore.score;
         list.appendChild(item);
-    });
+    }
 
 };
 
@@ -189,18 +194,18 @@ memoryCards.forEach(card => card.addEventListener('click', flipCard));
 
 //Increment score when a match is found.
 //Replay-button is displayed when all matches have been found,
-//when the button is clicked all the cards are flipped and shuffled.
+//when the button is clicked all the cards are flipped and shuffled and the game starts over again.
 const replayButton = document.querySelector('.replay-button');
 const score = document.querySelector('.score');
 let scoreCounter = 0;
 
 function incrementScore() {
     score.textContent = ++scoreCounter;
-    if (score.textContent === '2') {
+    if (score.textContent === '8') {
         setTimeout(() => {
             scoreBoard.classList.remove('show-score-board');
             memoryBoard.classList.remove('show-memory-board');
-            replayButton.classList.add('show-replay-button');
+            replayButton.classList.add('show');
             highscoreTable.classList.add('show');
         }, 1500);
         stopTimer();
@@ -212,6 +217,8 @@ function restartGame(event) {
     resetBoard();
     resetTimer();
     highscoreTable.classList.remove('show');
+    replayButton.classList.remove('show');
+
     //reset score
     score.textContent = 0;
     scoreCounter = 0;
@@ -223,7 +230,7 @@ function restartGame(event) {
         flippedCard.classList.remove('flip');
     });
 
-    //re-attach eventlistener to cards
+    //re-attach eventlistener to all cards
     memoryCards.forEach(card => card.addEventListener('click', flipCard));
 }
 replayButton.addEventListener('click', restartGame);
