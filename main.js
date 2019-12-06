@@ -111,7 +111,7 @@ function stopTimer() {
     let localData = JSON.parse(localStorage.getItem('highScores'));
 
     //show highscores in list
-    const list = document.createElement('ol');
+    const list = document.querySelector('ol');
     highscoreTable.appendChild(list);
     localData.forEach(data => {
         const item = document.createElement('li');
@@ -196,11 +196,11 @@ let scoreCounter = 0;
 
 function incrementScore() {
     score.textContent = ++scoreCounter;
-    if (score.textContent === '2') {
+    if (score.textContent === '1') {
         setTimeout(() => {
             scoreBoard.classList.remove('show-score-board');
             memoryBoard.classList.remove('show-memory-board');
-            replayButton.classList.add('show-replay-button');
+            replayButton.classList.add('show');
             highscoreTable.classList.add('show');
         }, 1500);
         stopTimer();
@@ -212,6 +212,7 @@ function restartGame(event) {
     resetBoard();
     resetTimer();
     highscoreTable.classList.remove('show');
+    replayButton.classList.remove('show');
     //reset score
     score.textContent = 0;
     scoreCounter = 0;
