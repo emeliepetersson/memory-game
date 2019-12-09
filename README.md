@@ -21,6 +21,8 @@ Clone down the project to you computer:
 - Open the index.html file in your browser.
 
 ## Testers
+- Maja Alin
+- Julia Karlsson
 
 ## Code review
 
