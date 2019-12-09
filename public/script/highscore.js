@@ -2,7 +2,7 @@
 
 //Save username and score(the time in this case) in localdata and display scores in a list
 const username = document.querySelector(".username");
-const highscoreTable = document.querySelector(".highscoreTable");
+const highscoreTable = document.querySelector(".highscore-table");
 let highScores = JSON.parse(localStorage.getItem("highScores")) || []; //if localstorage.getItem('highScores') is not set yet, create an empty array.
 
 function saveHighscores() {

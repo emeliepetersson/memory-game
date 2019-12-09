@@ -3,7 +3,7 @@
 // Add eventlistener to "start game" button. On click: shuffle and show the cards.
 const startButton = document.querySelector(".start-button");
 const scoreBoard = document.querySelector(".score-board");
-const usernameForm = document.querySelector(".usernameForm");
+const usernameForm = document.querySelector(".username-form");
 
 function startGame(event) {
   event.currentTarget.classList.add("hide");
