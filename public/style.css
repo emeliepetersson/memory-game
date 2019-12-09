@@ -1,166 +1,184 @@
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 body {
-    background-color: rgb(226, 224, 221);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-family:Trebuchet MS;
+  background-color: rgb(226, 224, 221);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Trebuchet MS;
 }
 button {
-    position: absolute;
-    top: 40%;
-    width: 12em;
-    height: 5em;
-	border-radius:60px;
-	cursor:pointer;
-	color:#ffffff;
-	font-size:28px;
-	padding:10px 50px;
+  position: absolute;
+  top: 40%;
+  width: 12em;
+  height: 5em;
+  border-radius: 60px;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 28px;
+  padding: 10px 50px;
 }
-
 
 /* Start button */
 .start-button {
-	box-shadow:inset 0px 200px 0px -150px #95bd82;
-  background-color:#80b864;
-	text-shadow:0px 1px 0px #81ab65;
+  box-shadow: inset 0px 200px 0px -150px #95bd82;
+  background-color: #80b864;
+  text-shadow: 0px 1px 0px #81ab65;
 }
 .start-button:hover {
-	background-color:#8bb874;
+  background-color: #8bb874;
 }
-
 
 /* Username */
 form {
-    position: absolute;
-    top: 25%;
+  position: absolute;
+  top: 25%;
 }
 form label {
-    display: block;
-    padding-left: 1em;
+  display: block;
+  padding-left: 1em;
 }
 .username {
-    font-style: italic;
-    width: 16em;
-    height: 3em;
-    padding: 1em;
-    border-radius: 2em;
+  font-style: italic;
+  width: 16em;
+  height: 3em;
+  padding: 1em;
+  border-radius: 2em;
 }
-
 
 /* Score board */
 .score-board {
-    display: none;
-    margin-top: 1em;
+  display: none;
+  margin-top: 1em;
 }
 .score-board h2 {
-    margin-left: 0.5em;
-    font-size: 2em;
+  margin-left: 0.5em;
+  font-size: 2em;
 }
-.score-board p, .timer {
-    margin: 0 0.5em;
-    font-size: 2em
+.score-board p,
+.timer {
+  margin: 0 0.5em;
+  font-size: 2em;
 }
 .show-score-board {
-    display: flex;
+  display: flex;
 }
-
 
 /* Memory board */
 .memory-board {
-    position: absolute;
-    top: 10%;
-    display: none;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    align-items: center;
-    width: 40em;
-    height: 40em;
-    perspective: 1000px;
-    overflow:visible;
+  position: absolute;
+  top: 10%;
+  display: none;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 80%;
+  max-width: 40em;
+  height: 80%;
+  perspective: 1000px;
+  overflow: visible;
 }
 .show-memory-board {
-    display: flex;
+  display: flex;
 }
 /* Memory card */
 .memory-card {
-    background-color: thistle;
-    width: calc(25% - 10px);
-    height: calc(25% - 10px);
-    transform: scale(1);
-    transform-style: preserve-3d;
-    transition: transform .5s;
-    border: 5px solid rgb(241, 239, 239);
-    border-radius: 5px;
+  background-color: thistle;
+  width: 9em;
+  height: 9em;
+  margin: 0.5em;
+  transform: scale(1);
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+  border: 5px solid rgb(241, 239, 239);
+  border-radius: 5px;
 }
 .memory-card:active {
-    transform: scale(0.97);
-    transition: transform .2s;
+  transform: scale(0.97);
+  transition: transform 0.2s;
 }
 .memory-card.flip {
-    transform: rotateY(180deg);
-    -webkit-transform:rotateY(180deg);
+  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
 }
 .memory-card img {
-    width: 90%;
-    height: 90%;
-    margin: 8px;
+  width: 90%;
+  height: 90%;
+  margin: 8px;
 }
 .back {
-    transform: rotateY(180deg);
-    -webkit-transform:rotateY(180deg);
+  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
 }
-.front, .back {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    opacity: .99; /*This will make backface-visibility work in chrome*/
+.front,
+.back {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  opacity: 0.99; /*This will make backface-visibility work in chrome*/
 }
-
 
 /* Replay button */
 .replay-button {
-    top: 20%;
-    box-shadow:inset 0px 200px 0px -150px #886eb8;
-    background-color:#7d64b8;
-    text-shadow:0px 1px 0px #9565ab;
-    display: none;
+  top: 20%;
+  box-shadow: inset 0px 200px 0px -150px #886eb8;
+  background-color: #7d64b8;
+  text-shadow: 0px 1px 0px #9565ab;
+  display: none;
 }
 .replay-button:hover {
-	background-color:#705ca0;
+  background-color: #705ca0;
 }
 .show-replay-button {
-    display: initial;
+  display: initial;
 }
-
 
 /* Highscore table */
 .highscoreTable {
-    display: none;
-    position: absolute;
-    top: 45%;
+  display: none;
+  position: absolute;
+  top: 45%;
 }
 .highscoreTable h2 {
-    margin-bottom: 1em;
+  margin-bottom: 1em;
 }
 .highscoreTable ol {
-    margin-left: 1.5em;
+  margin-left: 1.5em;
 }
 .highscoreTable ol li {
-    padding-bottom: 0.5em;
+  padding-bottom: 0.5em;
 }
-
 
 /* Toggle these classes */
 .hide {
-    display: none;
+  display: none;
 }
 .show {
+  display: block;
+}
+
+/* Mobile screen */
+@media only screen and (max-width: 400px) {
+  .show-score-board {
     display: block;
+    width: 100%;
+  }
+  .score-board h2 {
+    font-size: 1.5em;
+  }
+  .score-board p,
+  .timer {
+    font-size: 1.5em;
+  }
+  .memory-board {
+    top: 23%;
+  }
+  .memory-card {
+    width: 8em;
+    height: 8em;
 }
