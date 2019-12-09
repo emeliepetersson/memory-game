@@ -20,8 +20,6 @@ function countTimer() {
 
 //Stop timer and call saveHighscores function
 function stopTimer() {
-  event.preventDefault();
-
   clearInterval(timer); //This stop the timer
 
   saveHighscores();
