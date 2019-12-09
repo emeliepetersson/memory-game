@@ -20,6 +20,8 @@ Clone down the project to you computer:
 - $ git clone https://github.com/emeliepetersson/memory-game.git.
 - Open the index.html file in your browser.
 
+- Or visit https://javascript-memory.netlify.com/
+
 ## Testers
 - Maja Alin
 - Julia Karlsson
