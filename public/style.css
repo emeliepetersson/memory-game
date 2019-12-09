@@ -139,18 +139,18 @@ form label {
 }
 
 /* Highscore table */
-.highscoreTable {
+.highscore-table {
   display: none;
   position: absolute;
   top: 45%;
 }
-.highscoreTable h2 {
+.highscore-table h2 {
   margin-bottom: 1em;
 }
-.highscoreTable ol {
+.highscore-table ol {
   margin-left: 1.5em;
 }
-.highscoreTable ol li {
+.highscore-table ol li {
   padding-bottom: 0.5em;
 }
 
