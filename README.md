@@ -27,6 +27,11 @@ Clone down the project to you computer:
 - Julia Karlsson
 
 ## Code review
+Mikaela Lundsgård:
+- In index.html when using ‘class-name’ don’t use both camelCase and kebab-casing, it’s recommend to choose one and stay consistent. 
+- It would be really cool if high scores were sorted. 
+- When opening a card for the first time, the picture takes a few seconds to show up. 
+- Great code and fun game!
 
 ## License
 See [The MIT License](https://github.com/emeliepetersson/memory-game/blob/master/LICENSE).
